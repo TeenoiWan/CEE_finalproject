@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureScan — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+  <script>
+    // Apply theme immediately before page renders
+    (function() {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <main class="login-wrapper">
+
+    <!-- Logo -->
+    <div class="logo">
+      <span class="logo-dot"></span>
+      Cipher<span class="logo-accent">Dog</span>
+    </div>
+
+    <!-- Card -->
+    <div class="login-card">
+
+      <div class="card-header">
+        <h1>Welcome back</h1>
+        <p>Sign in to your account to continue</p>
+      </div>
+
+      <!-- Form -->
+      <form class="login-form" id="loginForm" novalidate>
+
+        <!-- Email -->
+        <div class="field-group" id="fieldEmail">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉</span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <p class="field-error" id="errorEmail"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="field-group" id="fieldPassword">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="btn-toggle-pw" id="togglePw" aria-label="Show password">
+              <span id="eyeIcon">👁</span>
+            </button>
+          </div>
+          <p class="field-error" id="errorPassword"></p>
+        </div>
+
+        <!-- Options -->
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" />
+          </label>
+          <a href="#" class="link-forgot" id="linkToRegister">Create account</a>
+        </div>
+
+        <!-- Global error -->
+        <div class="alert-error" id="alertError" style="display:none">
+          <span class="alert-icon">⚠️</span>
+          <span id="alertMsg">เกิดข้อผิดพลาด</span>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-login" id="btnLogin">
+          <span id="btnLabel">Sign in</span>
+          <span class="btn-spinner" id="btnSpinner" style="display:none"></span>
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- Register (same page) -->
+    <div class="login-card" id="registerCard" style="display:none; margin-top: 16px;">
+      <div class="card-header">
+        <h1>Create account</h1>
+        <p>Register a new user to sign in</p>
+      </div>
+
+      <form class="login-form" id="registerForm" novalidate>
+        <!-- Name -->
+        <div class="field-group" id="fieldRegName">
+          <label for="regName">Full name</label>
+          <div class="input-wrap">
+            <input type="text" id="regName" name="regName" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <p class="field-error" id="errorRegName"></p>
+        </div>
+
+        <!-- Email -->
+        <div class="field-group" id="fieldRegEmail">
+          <label for="regEmail">Email address</label>
+          <div class="input-wrap">
+            <input type="email" id="regEmail" name="regEmail" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <p class="field-error" id="errorRegEmail"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="field-group" id="fieldRegPassword">
+          <label for="regPassword">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="regPassword" name="regPassword" placeholder="••••••••" autocomplete="new-password" required />
+          </div>
+          <p class="field-error" id="errorRegPassword"></p>
+        </div>
+
+        <!-- Global error -->
+        <div class="alert-error" id="alertRegError" style="display:none">
+          <span class="alert-icon">⚠️</span>
+          <span id="alertRegMsg">Registration failed</span>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-login" id="btnRegister">
+          <span id="btnRegisterLabel">Register</span>
+          <span class="btn-spinner" id="btnRegisterSpinner" style="display:none"></span>
+        </button>
+
+        <p class="footer-note" style="margin-top: 12px;">
+          Already have an account?
+          <a href="#" id="linkBackToLogin">Sign in</a>
+        </p>
+      </form>
+    </div>
+
+    <p class="footer-note">
+      SecureScan v1.0 &nbsp;·&nbsp; © 2024 All rights reserved
+    </p>
+
+  </main>
+
+  <script type="module" src="scripts/login.js"></script>
+</body>
+</html>

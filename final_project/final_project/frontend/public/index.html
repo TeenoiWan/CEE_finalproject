@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cipher Dog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Apply theme immediately before page renders
+    (function() {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+    // Auth guard — must run in <head> before any content renders
+    (function() {
+      try {
+        if (!localStorage.getItem("token")) {
+          window.location.replace("login.html");
+        }
+      } catch (_err) {
+        window.location.replace("login.html");
+      }
+    })();
+  </script>
+  <!-- Hide body until JS confirms token exists, prevents dashboard flash -->
+  <style>body { visibility: hidden; }</style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-dot"></span>
+      Docuument<span class="logo-accent">Scan</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Dashboard</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-theme" id="themeToggle" title="Toggle Theme">🌓</button>
+      <button class="btn-logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- Welcome -->
+    <div class="welcome-bar">
+      <div class="welcome-text">
+        <h1>Welcome back, User <span class="wave">👋</span></h1>
+      </div>
+      <span class="clock" id="clock">--:--:--</span>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card red">
+        <span class="stat-label">High Risk</span>
+        <span class="stat-value">2</span>
+      </div>
+      <div class="stat-card yellow">
+        <span class="stat-label">Medium Risk</span>
+        <span class="stat-value">5</span>
+      </div>
+      <div class="stat-card green">
+        <span class="stat-label">Safe</span>
+        <span class="stat-value">12</span>
+      </div>
+    </div>
+
+    <!-- Upload -->
+    <section class="upload-section">
+      <p class="section-title">// Scan New File</p>
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📄</div>
+        <p class="drop-title">Drop your file here</p>
+        <p class="drop-sub">Supports PDF, DOCX, TXT &nbsp;·&nbsp; Max <span>50 MB</span></p>
+        <button class="btn-upload">Browse File</button>
+        <p class="drop-hint">Files are scanned locally · No data stored externally</p>
+
+        <!-- Progress -->
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-label">
+            <span id="progressLabel">Scanning…</span>
+            <span id="progressPct">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+      <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none" />
+    </section>
+
+    <!-- Recent Scans -->
+    <section class="scans-section">
+      <div class="scans-header">
+        <p class="section-title">// Recent Scans</p>
+        <div class="filter-group">
+          <button class="btn-filter active" data-filter="all">All</button>
+          <button class="btn-filter" data-filter="high">High</button>
+          <button class="btn-filter" data-filter="medium">Medium</button>
+          <button class="btn-filter" data-filter="low">Safe</button>
+        </div>
+        <button class="btn-clear" id="btnClearAll">Clear all</button>
+      </div>
+      <div class="scan-list" id="scanList"></div>
+    </section>
+
+  </main>
+
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

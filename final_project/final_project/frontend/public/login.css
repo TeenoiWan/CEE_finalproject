@@ -1,0 +1,404 @@
+/* ═══════════════════════════════════════════
+   SecureScan — login.css
+   ═══════════════════════════════════════════ */
+
+:root {
+  --bg:           #0c0d0f;
+  --surface:      #13151a;
+  --surface2:     #1a1d24;
+  --border:       #252830;
+  --border2:      #353840;
+  --text:         #e8eaf0;
+  --muted:        #5a5f70;
+
+  --accent:       #4fffb0;
+  --accent-glow:  rgba(79, 255, 176, 0.18);
+  --accent-dim:   rgba(79, 255, 176, 0.08);
+
+  --red:          #ff4d6a;
+  --red-dim:      rgba(255, 77, 106, 0.10);
+  --red-border:   rgba(255, 77, 106, 0.25);
+
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    16px;
+  --radius-xl:    22px;
+}
+
+[data-theme="light"] {
+  --bg:           #f4f6f8;
+  --surface:      #ffffff;
+  --surface2:     #fcfdfe;
+  --border:       #e2e8f0;
+  --border2:      #cbd5e1;
+  --text:         #0f172a;
+  --muted:      #64748b;
+
+  --accent:       #059669;
+  --accent-glow:  rgba(5, 150, 105, 0.18);
+  --accent-dim:   rgba(5, 150, 105, 0.08);
+
+  --red:          #dc2626;
+  --red-dim:      rgba(220, 38, 38, 0.10);
+  --red-border:   rgba(220, 38, 38, 0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Background grid ── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ── Background glow ── */
+.bg-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(79, 255, 176, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ════════════════════════════════
+   WRAPPER
+════════════════════════════════ */
+.login-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  width: 100%;
+  max-width: 420px;
+  padding: 1.5rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════
+   LOGO
+════════════════════════════════ */
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.logo-accent { color: var(--accent); }
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.75); }
+}
+
+/* ════════════════════════════════
+   CARD
+════════════════════════════════ */
+.login-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent line */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* ── Card header ── */
+.card-header {
+  margin-bottom: 2rem;
+}
+
+.card-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.card-header p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: 0.2px;
+}
+
+/* ════════════════════════════════
+   FORM
+════════════════════════════════ */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Field group ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* ── Input wrap ── */
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.input-wrap input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 11px 42px 11px 40px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrap input::placeholder { color: var(--muted); }
+
+.input-wrap input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+/* Error state */
+.field-group.has-error .input-wrap input {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-dim);
+}
+
+/* ── Toggle password ── */
+.btn-toggle-pw {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.85rem;
+  opacity: 0.45;
+  transition: opacity 0.18s;
+  line-height: 1;
+}
+
+.btn-toggle-pw:hover { opacity: 1; }
+
+/* ── Field error ── */
+.field-error {
+  font-size: 0.73rem;
+  color: var(--red);
+  letter-spacing: 0.2px;
+  min-height: 16px;
+}
+
+/* ════════════════════════════════
+   FORM OPTIONS
+════════════════════════════════ */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--muted);
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] { display: none; }
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+
+.checkbox-label input:checked + .checkmark {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox-label input:checked + .checkmark::after {
+  content: '✓';
+  font-size: 0.65rem;
+  color: #0c0d0f;
+  font-weight: 700;
+}
+
+.link-forgot {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.18s;
+  letter-spacing: 0.2px;
+}
+
+.link-forgot:hover { opacity: 0.7; }
+
+/* ════════════════════════════════
+   ALERT ERROR (global)
+════════════════════════════════ */
+.alert-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--red-dim);
+  border: 1px solid var(--red-border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--red);
+  animation: fadeUp 0.25s ease;
+}
+
+.alert-icon { font-size: 0.9rem; flex-shrink: 0; }
+
+/* ════════════════════════════════
+   SUBMIT BUTTON
+════════════════════════════════ */
+.btn-login {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: var(--accent);
+  color: #0c0d0f;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+  margin-top: 0.25rem;
+}
+
+.btn-login:hover:not(:disabled) {
+  background: #6fffbf;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px var(--accent-glow);
+}
+
+.btn-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(12, 13, 15, 0.3);
+  border-top-color: #0c0d0f;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+.footer-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+}
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media (max-width: 480px) {
+  .login-card { padding: 1.75rem 1.25rem; }
+}

@@ -1,0 +1,26 @@
+{
+  "users": [],
+  "scans": [
+    {
+      "id": "8a2e3577-9662-4805-bb42-c10f392e16dc",
+      "userId": "69fecf656c984e4e3d7afe13",
+      "fileName": "CEE_final_danger file.txt",
+      "riskScore": 75,
+      "findingsCount": 2,
+      "categories": [
+        "Phone Number",
+        "National ID"
+      ],
+      "createdAt": "2026-05-09T06:09:14.334Z"
+    },
+    {
+      "id": "dc627622-3937-4fe1-8f6a-9823360eb2eb",
+      "userId": "69fecf656c984e4e3d7afe13",
+      "fileName": "hi.txt",
+      "riskScore": 5,
+      "findingsCount": 0,
+      "categories": [],
+      "createdAt": "2026-05-09T06:11:16.003Z"
+    }
+  ]
+}
