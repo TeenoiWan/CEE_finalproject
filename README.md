@@ -57,22 +57,4 @@ Users upload a document (PDF, text, etc.) and the app uses the Google Gemini API
 
 ---
 
-## ⚠️ Important
 
-- **Never commit your `.env` file.** Make sure `.env` is listed in `.gitignore`.
-- All API keys and secrets must stay in `.env` only.
-
----
-
-## 👥 Team Members
-
--
--
--
-
----
-
-## 🔗 Links
-
-- **Live URL:** *(your deployed URL here)*
-- **Video Demo:** *(your YouTube link here)*
